@@ -19,11 +19,13 @@
 
 # org.awokenwell.proximity
 
+This is a fork of https://github.com/rbarroetavena/cordova-plugin-proximity, which is a fork of https://github.com/awoken-well/cordova-plugin-proximity.
+It has been modified to improve power efficiency and be compatible with newer versions of Android.
+
 This plugin provides access to the device's (IR) proximity sensor. This sensor is typically used in applications to prevent touch events on the screen when the device is held close to one's face.
 
 ## Installation
-
-    cordova plugin add https://github.com/awoken-well/cordova-plugin-proximity.git
+    cordova plugin add https://github.com/opentelecom/cordova-plugin-proximity.git
 
 ## Supported Platforms
 
@@ -35,6 +37,8 @@ This plugin provides access to the device's (IR) proximity sensor. This sensor i
 - navigator.proximity.getProximityState
 - navigator.proximity.enableSensor
 - navigator.proximity.disableSensor
+- navigator.proximity.enableProximityScreenOff
+- navigator.proximity.disableProximityScreenOff
 
 ## navigator.proximity.getProximityState
 
@@ -47,7 +51,8 @@ This proximity state is returned to the 'successCallback' callback function.
 ## navigator.proximity.enableSensor
 
 Enable the proximity sensor. In iOS the proximity sensor is disabled by default and must
-be enabled manually.
+be enabled manually. If the proximity value is not checked within 30 seconds, the sensor
+will be turned off to save power.
 
     navigator.proximity.enableSensor();
 
@@ -56,6 +61,19 @@ be enabled manually.
 Disable the proximity sensor.
 
     navigator.proximity.disableSensor();
+
+## navigator.proximity.enableProximityScreenOff();
+
+This function enables the functionality that makes the device screen turn off when the proximity sensor detects a near object.
+Note that the device does not actually fall asleep while the screen is off.
+
+    navigator.proximity.enableProximityScreenOff();
+
+## navigator.proximity.disableProximityScreenOff();
+
+This function disables the functionality that makes the device screen turn off when the proximity sensor detects a near object.
+
+    navigator.proximity.disableProximityScreenOff();
 
 ### Example 1
 
@@ -117,7 +135,20 @@ This example shows a watcher. If other things approaches the phone, 'on_approch_
     // .... after testing
     //proximitysensorWatchStop(proximitysensor);
 
+### Example 3
 
-### iOS Quirks
+This example shows how the plugin can easily be used to turn the device screen on and off when
+it approaches an object.
 
-- iOS will automatically dim the screen and disable touch events when the proximity sensor is in the 'near' state. This can be circumvented by using undocumented API calls, but will result in App Store rejection.
+```
+// Enables polling of proximity to automatically disable screen when object is near
+startProximityPolling() {
+    navigator.proximity.enableSensor();
+    navigator.proximity.enableProximityScreenOff();
+}
+disable proximity sensing
+stopProximityPolling() {
+    navigator.proximity.disableProximityScreenOff();
+    navigator.proximity.disableSensor();
+}
+```

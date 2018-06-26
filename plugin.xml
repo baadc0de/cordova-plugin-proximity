@@ -19,48 +19,47 @@
 -->
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-           id="org.opentelecom.proximity"
-      version="0.2.1">
-	
+        id="cordova-plugin-proximity-sensor"
+        version="0.2.1">
+
     <name>Proximity Sensor</name>
     <description>Cordova Proximity Sensor Plugin</description>
     <license>Apache 2.0</license>
     <keywords>cordova,proximity,sensor</keywords>
-    <repo>https://github.com/opentelecom/cordova-plugin-proximity.git</repo>
-    <issue>https://github.com/opentelecom/cordova-plugin-proximity/issues</issue>
+    <repo>https://github.com/pcvengros/cordova-plugin-proximity.git</repo>
+    <issue>https://github.com/pcvengros/cordova-plugin-proximity/issues</issue>
 
     <js-module src="www/proximity.js" name="proximity">
-        <clobbers target="navigator.proximity" />
+        <clobbers target="navigator.proximity"/>
     </js-module>
-    
+
     <!-- ios -->
     <platform name="ios">
-        
+
         <config-file target="config.xml" parent="/*">
             <feature name="Proximity">
                 <param name="ios-package" value="CDVProximity"/>
             </feature>
         </config-file>
-            
-        <header-file src="src/ios/CDVProximity.h" />
-        <source-file src="src/ios/CDVProximity.m" />
-        
+
+        <header-file src="src/ios/CDVProximity.h"/>
+        <source-file src="src/ios/CDVProximity.m"/>
+
     </platform>
-	
+
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-	        <feature name="Proximity">
-	            <param name="android-package" value="org.awokenwell.proximity.ProximitySensorListener"/>
-	        </feature>
-	    </config-file>
+            <feature name="Proximity">
+                <param name="android-package" value="org.awokenwell.proximity.ProximitySensorListener"/>
+            </feature>
+        </config-file>
 
-	<config-file target="AndroidManifest.xml" parent="/manifest">
-		 <uses-permission android:name="android.permission.WAKE_LOCK" />
-	</config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.WAKE_LOCK"/>
+        </config-file>
 
-	    <source-file src="src/android/ProximitySensorListener.java" target-dir="src/org/awokenwell/proximity" />
-    </platform> 
-	
+        <source-file src="src/android/ProximitySensorListener.java" target-dir="src/org/awokenwell/proximity"/>
+    </platform>
 
 </plugin>

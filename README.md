@@ -17,15 +17,21 @@
     under the License.
 -->
 
-# org.awokenwell.proximity
+# cordova-plugin-proximity-sensor
 
-This is a fork of https://github.com/rbarroetavena/cordova-plugin-proximity, which is a fork of https://github.com/awoken-well/cordova-plugin-proximity.
-It has been modified to improve power efficiency and be compatible with newer versions of Android.
+This is a fork of:
+https://github.com/rbarroetavena/cordova-plugin-proximity - which is a fork of
+https://github.com/awoken-well/cordova-plugin-proximity - which is a for of
+https://github.com/opentelecom/cordova-plugin-proximity
+
+This for was created just to clean-up packaging for Cordova plugin system.
+
+[rbarroetavena] fork - It has been modified to improve power efficiency and be compatible with newer versions of Android.
 
 This plugin provides access to the device's (IR) proximity sensor. This sensor is typically used in applications to prevent touch events on the screen when the device is held close to one's face.
 
 ## Installation
-    cordova plugin add https://github.com/opentelecom/cordova-plugin-proximity.git
+    cordova plugin add https://github.com/pcvengros/cordova-plugin-proximity.git
 
 ## Supported Platforms
 

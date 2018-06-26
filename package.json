@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-proximity-sensor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This plugin provides access to the device's (IR) proximity sensor. This sensor is typically used in applications to prevent touch events on the screen when the device is held close to one's face. It has been optimised to save power",
   "main": "www/proximity.js",
   "directories": {
@@ -11,7 +11,7 @@
     },
   "repository": {
       "type": "git",
-      "url": "git+https://github.com/opentelecom/cordova-plugin-proximity.git"
+      "url": "git+https://github.com/pcvengros/cordova-plugin-proximity.git"
     },
   "keywords": [
       "cordova",
@@ -21,9 +21,10 @@
       "ios"
     ],
   "author": "Olaf T.A. Janssen <o.t.a.janssen@gmail.com> (http://nullelement.org/)",
+  "contributors": ["Pavol Cvengros <pavol.cvengros@securcom.me> (https://www.securcom.me)"],
   "license": "ISC",
   "bugs": {
-      "url": "https://github.com/opentelecom/cordova-plugin-proximity/issues"
+      "url": "https://github.com/pcvengros/cordova-plugin-proximity/issues"
     },
-  "homepage": "https://github.com/opentelecom/cordova-plugin-proximity#readme"
+  "homepage": "https://github.com/pcvengros/cordova-plugin-proximity#readme"
 }

@@ -45,7 +45,7 @@
 - (void)getProximityState:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool: status];
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool: [[UIDevice currentDevice] proximityState]];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 

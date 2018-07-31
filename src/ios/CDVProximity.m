@@ -45,7 +45,16 @@
 - (void)getProximityState:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool: [[UIDevice currentDevice] proximityState]];
+    bool proxState = true;
+    
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
+    
+    /* if the screen brightness is not 0, check sensor, otherwise report that the user is close to the screen */
+    if ([[UIScreen mainScreen] brightness] != 0.0) {
+        proxState = [[UIDevice currentDevice] proximityState];
+    }
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool: proxState];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
@@ -64,6 +73,11 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+    
+    if (command != nil) {
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
 }
 
 - (void)sensorStateChange:(NSNotificationCenter *)notification
